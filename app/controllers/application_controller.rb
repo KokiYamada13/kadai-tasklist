@@ -4,6 +4,13 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   
   private
+  def current_user
+    User.find(session[:user_id])
+  end  
+  
+  def logged_in?
+    !!current_user
+  end  
 
   def require_user_logged_in
     unless logged_in?
